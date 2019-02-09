@@ -1,4 +1,5 @@
 const express = require('express');
+const path= require('path');
 const bodyParser = require('body-parser')
 const dbServices = require('./dbServices');
 const app = express();
@@ -8,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get('/', function (req, res) {
-  res.send('hello world');
+  res.sendFile(path.join(__dirname, "README.md"));
 });
 app.post('/create', dbServices.createUser);
 app.post('/login', dbServices.loginUser);
